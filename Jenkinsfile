@@ -4,7 +4,11 @@ pipeline {
         stage('build') {
             steps {
                 echo 'Building goodness pipeline...'
-                ./gradlew build
+                if(isUnix()){
+                    sh './gradlew clean build'
+                } else {
+                    bat 'gradlew clean build'
+                }
             }
         }
     }
