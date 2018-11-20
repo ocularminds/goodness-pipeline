@@ -1,0 +1,117 @@
+test-output/
+
+libs/
+
+### JetBrains template
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
+# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+
+.idea/**/modules/
+.idea/**/modules.xml
+.idea/findbugs-idea.xml
+.idea/checkstyle-idea.xml
+.idea/compiler.xml
+.idea/misc.xml
+.idea/vcs.xml
+
+# User-specific stuff:
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/dictionaries/
+.idea/inspectionProfiles/
+.idea/shelf
+
+# Sensitive or high-churn files:
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.xml
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+*.iml
+*.ipr
+
+# Gradle:
+.idea/**/gradle.xml
+.idea/**/libraries
+.idea/.name
+.idea/shelf
+
+# CMake
+cmake-build-debug/
+cmake-build-release/
+
+# Mongo Explorer plugin:
+.idea/**/mongoSettings.xml
+
+## File-based project format:
+*.iws
+
+## Plugin-specific files:
+
+# IntelliJ
+out/
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
+
+# JIRA plugin
+atlassian-ide-plugin.xml
+
+# Cursive Clojure plugin
+.idea/replstate.xml
+
+# Crashlytics plugin (for Android Studio and IntelliJ)
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+
+### Gradle template
+.gradle
+/build/
+.gradle/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
+# gradle/wrapper/gradle-wrapper.properties
+libs/
+**/libs/
+**/build/
+**/**/build/
+buildSrc/build/
+buildSrc/.gradle/
+generated-src/
+offline-tests/**/build/
+libs/
+common/build/
+common/libs/
+app1/build/
+app2/build/
+testcase/build/
+testcase/libs/
+testframework/build/
+testframework/libs/
+offline-tests/libs/
+offline-tests/build/
+offline-tests/common/build/
+offline-tests/common/libs/
+offline-tests/helper/build/
+offline-tests/helper/build/
+offline-tests/testcase/build/
+offline-tests/unified_ep2_saf_daily_test_**/build
+offline-tests/test_**/build
+.idea/runConfigurations/
+.idea/runConfigurations/
+/.nb-gradle/
+orb.db/
+java_pid*.HPROF

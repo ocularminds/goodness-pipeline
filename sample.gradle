@@ -1,0 +1,19 @@
+task config(description: 'Configuration Task'){
+   println "${it.description}"
+   def environment = 'dev'
+   //setProperty 'environment', environment
+   println "Environment is set to ${environment}"
+   
+   //load config data from file: config.groovy
+   def configFile = file('config.groovy')
+   def config = new ConfigSlurper(environment).parse(configFile.toURL())
+   project.configObject = ${config}
+}
+
+task printProps << {
+    println "serverName:  $config.serverName"
+    println "mail.server: $config.mail.server"
+    println "mail.port:   $config.mail.port"
+}
+
+defaultTasks = ['config']

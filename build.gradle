@@ -1,0 +1,103 @@
+task hello << {ant.echo 'Howdy from ant'}
+
+task console << {
+      println "printing arguments to console..."
+      println "$arg1, $arg2"
+}
+
+task deploy(dependsOn: [console]) {
+  doLast{
+      println "deploying file..."
+  }
+}
+
+task customJar(dependsOn:[hello, console, deploy]){
+  println 'creating customJar'
+}
+console.mustRunAfter hello
+
+/*
+* automatically create project 3 times with prefix lib and counter number
+*/
+3.times { counter -> task "lib$counter" {
+    description = "Build lib$counter"
+    println "inside counter task ${counter}"
+    if(counter > 0){
+       dependsOn = ["lib${counter -1}"]
+    }
+  }
+}
+
+
+/*
+* build all tasks starting with lib before compiling
+*/
+task compile{
+    dependsOn{
+      project.tasks.findAll{
+        it.name.startsWith('lib')
+      }
+    }
+    description = "Compiling all sources"
+}
+
+task testFail << {
+  println "running task: ${it.name}"
+  //throw new TaskExecutionException(it, new Exception("Failed on purpose"))
+}
+
+task config(description: 'Configuration Task'){
+   println "${it.description}"
+   def environment = 'dev'   
+   //load config data from file: config.groovy
+   def configFile = file('config.groovy')
+   def config = new ConfigSlurper(environment).parse(configFile.toURL())
+   println "serverName:  $config.serverName"
+   println "mail.server: $config.mail.server"
+   println "mail.port:   $config.mail.port"
+}
+
+/*
+* Using ${->...} syntax for lazy evaluation
+*/
+allprojects {
+    apply plugin: "java"
+    version = '1.0.0'
+    ext{
+       port = 80
+       buildVersion = "${project.name}-${-> project.version}"
+       serverPort1 = "${-> project.serverPort1}"
+       serverPort2 = "${-> project.serverPort2}"
+       testCase = new TestCase()
+       if(project.hasProperty('testConfigMap')){
+           testConfigMap = project.testConfigMap
+       }
+       if(project.hasProperty('testCase')){
+           testCase = project.testCase
+       }
+    }
+    afterEvaluate {
+            // Create calculatedPort property with
+            // value at the latest moment.
+            ext.calculatedPort = port + 10
+    }
+    
+    task displayBuildVersion() {
+       description = 'Display value of buildVersion property'
+       doFirst{
+           println buildVersion
+           println calculatedPort
+       }
+    }
+    
+    if(project.name.startsWith('app')){            
+           
+           //apply plugin: "com.github.psxpaul.execfork"
+	    
+	    task fireTask(dependsOn: displayBuildVersion) << {
+	       println "Firing task:${serverPort1}, serverPort2: ${serverPort2}"
+	       println TestCase
+	       println "fireTask(${testConfigMap.name}) done."
+           }
+    }  
+}
