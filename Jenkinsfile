@@ -3,7 +3,8 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'mvn --version'
+                echo 'Building goodness pipeline...'
+                ./gradlew build
             }
         }
     }
