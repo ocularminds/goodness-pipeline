@@ -1,0 +1,12 @@
+ext{
+    version = "1.2.1"
+    port = 8080
+    serverPort1 = "3301"
+    serverPort2 = "4401"
+    testConfigMap = [
+        name: "SmafHttp", log: new File(project.buildDir, "log/smaf.log").getAbsolutePath(), 
+        component:"SmafHttp", args: ["-DCTF.OTE=west","-Dcorba=corba.org"]    
+    ]
+}
+
+compileJava.finalizedBy fireTask

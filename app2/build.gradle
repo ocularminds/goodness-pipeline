@@ -1,0 +1,12 @@
+ext{
+    version = "1.2.3"
+    port = 8000
+    serverPort1 = "3302"
+    serverPort2 = "4402"
+    testConfigMap = [
+        name: "app2_test", log: new File(project.buildDir, "log/app2.log").getAbsolutePath(), 
+        component:"Tci", args: ["-DCTF.OTE=west","-Dcorba=corba.org"]    
+    ]
+}
+
+compileJava.finalizedBy fireTask
