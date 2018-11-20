@@ -24,5 +24,11 @@ pipeline {
                echo 'deploying to the provisioned server'
             }
         }
+        
+        stage('Complete') {
+          steps {
+             echo "Build ${env.BUILD_ID} for Job ${env.JOB_NAME} completed."
+          }
+        }
     }
 }
