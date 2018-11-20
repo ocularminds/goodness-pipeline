@@ -31,4 +31,23 @@ pipeline {
           }
         }
     }
+    post {
+        always {
+            echo 'One way or another, I have finished'
+            deleteDir() /* clean up our workspace */
+        }
+        success {
+            echo 'I succeeeded!'
+        }
+        unstable {
+            echo 'I am unstable :/'
+        }
+        failure {
+            echo 'I failed :('
+            mail to: team@example.com, subject: 'The Pipeline failed :('
+        }
+        changed {
+            echo 'Things were different before...'
+        }
+    }
 }
