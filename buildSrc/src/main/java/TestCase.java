@@ -7,7 +7,7 @@ public class TestCase{
 
 	public TestCase(){}
 
-	public TestCase(String name, String log, String component,String[] args){
+	public TestCase(String name, String log, String component, String[] args){
 		this.name = name;
 		this.log = log;
 		this.component = component;
