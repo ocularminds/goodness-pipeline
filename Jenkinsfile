@@ -43,7 +43,8 @@ pipeline {
             echo 'I am unstable :/'
         }
         failure {
-            mail to: team@example.com, subject: 'The Pipeline failed :('
+            echo 'I failed :('
+            //mail to: team@example.com, subject: 'The Pipeline failed :('
         }
         changed {
             echo 'Things were different before...'
