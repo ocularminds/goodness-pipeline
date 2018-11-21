@@ -13,4 +13,8 @@ public class TestCase{
 		this.component = component;
 		this.args = args;
 	}
+
+	public String toString(){
+		return "{name:"+name+",log:"+log+",component:"+component+"}";
+	}
 }
